@@ -170,6 +170,18 @@ a { color: inherit; }
   padding: 0 24px;
 }
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+.hero-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.72) 55%, rgba(10,9,8,0.92) 100%),
+    linear-gradient(90deg, rgba(10,9,8,0.55) 0%, rgba(10,9,8,0.15) 45%, rgba(10,9,8,0.55) 100%);
+}
 .orb {
   position: absolute;
   border-radius: 50%;
@@ -184,7 +196,7 @@ a { color: inherit; }
   width: 460px; height: 460px;
   transform: translateY(-50%);
   filter: url(#goo);
-  opacity: 0.5;
+  opacity: 0.22;
   mix-blend-mode: screen;
 }
 .liquid-wrap .blob {
@@ -307,23 +319,22 @@ a { color: inherit; }
 .story-visual {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(var(--gold-rgb), 0.14), transparent 55%),
-    radial-gradient(ellipse at 70% 80%, rgba(139, 74, 43, 0.22), transparent 55%),
-    linear-gradient(160deg, #14100d 0%, #0A0908 60%);
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 32px;
+  background: #0A0908;
 }
-.placeholder-badge {
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  border: 1px dashed var(--border);
-  border-radius: 100px;
-  padding: 6px 14px;
+.story-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.story-frame.active { opacity: 1; }
+.story-scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(0deg, rgba(10,9,8,0.85) 0%, rgba(10,9,8,0.35) 45%, rgba(10,9,8,0.55) 100%),
+    linear-gradient(90deg, rgba(10,9,8,0.6) 0%, rgba(10,9,8,0.1) 40%, rgba(10,9,8,0.1) 60%, rgba(10,9,8,0.6) 100%);
 }
 .annotation-card {
   position: absolute;
@@ -459,58 +470,32 @@ section { position: relative; z-index: 1; }
   aspect-ratio: 4/3;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
+  overflow: hidden;
 }
-.gallery-tile span { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.5px; }
-.g1 { background: linear-gradient(135deg, #201a15, #0A0908); }
-.g2 { background: linear-gradient(135deg, #1c1410, #0A0908); }
-.g3 { background: radial-gradient(circle at 30% 30%, rgba(var(--gold-rgb),0.12), #0A0908); }
-.g4 { background: linear-gradient(135deg, #191512, #0A0908); }
-.g5 { background: radial-gradient(circle at 70% 70%, rgba(139,74,43,0.2), #0A0908); }
-.g6 { background: linear-gradient(135deg, #221a14, #0A0908); }
+.gallery-tile img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.gallery-tile:hover img { transform: scale(1.06); }
 @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* ============ TESTIMONIALS ============ */
-.testimonials-track {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 50px 32px 100px;
-  max-width: 1200px;
+/* ============ TRUST / RATING ============ */
+#testimonials { padding: 90px 32px 110px; }
+.trust-card {
+  max-width: 420px;
   margin: 0 auto;
-  scrollbar-width: none;
-}
-.testimonials-track::-webkit-scrollbar { display: none; }
-.testimonial-card {
-  min-width: 340px;
-  scroll-snap-align: start;
+  text-align: center;
   background: var(--surface-2);
   border: 1px solid var(--border);
   backdrop-filter: blur(20px);
   border-radius: var(--radius);
-  padding: 32px;
-  flex-shrink: 0;
-  position: relative;
+  padding: 48px 40px;
 }
-.sample-tag {
-  position: absolute;
-  top: 20px; right: 20px;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 3px 10px;
-}
-.testimonial-text { font-size: 1rem; margin-bottom: 22px; color: var(--text); line-height: 1.6; }
-.author-name { display: block; font-weight: 600; font-size: 0.9rem; }
-.author-role { display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px; }
+.trust-stars { color: var(--gold); font-size: 1.6rem; letter-spacing: 4px; margin-bottom: 16px; }
+.trust-rating { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 600; color: var(--gold); line-height: 1; }
+.trust-label { color: var(--text-secondary); margin: 10px 0 28px; }
 
 /* ============ BOOKING ============ */
 #booking {

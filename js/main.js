@@ -196,6 +196,7 @@ const burstConfetti = (function confettiSetup() {
   const section = document.querySelector('.scroll-story');
   if (!section) return;
   const cards = Array.from(document.querySelectorAll('.annotation-card'));
+  const frames = Array.from(document.querySelectorAll('.story-frame'));
   const zones = cards.map((card) => ({
     show: parseFloat(card.dataset.show),
     hide: parseFloat(card.dataset.hide),
@@ -204,6 +205,7 @@ const burstConfetti = (function confettiSetup() {
   const HOLD_DURATION = 550;
   let isSnapping = false;
   let ticking = false;
+  let activeZone = -1;
 
   function update() {
     const rect = section.getBoundingClientRect();
@@ -225,6 +227,13 @@ const burstConfetti = (function confettiSetup() {
         }, HOLD_DURATION);
       }
       if (!visible) zone.snapped = false;
+
+      if (visible && i !== activeZone) {
+        activeZone = i;
+        frames.forEach((frame) => {
+          frame.classList.toggle('active', parseInt(frame.dataset.zone, 10) === i);
+        });
+      }
     });
     ticking = false;
   }
@@ -460,7 +469,7 @@ const burstConfetti = (function confettiSetup() {
     '#services .section-title, #services .section-subtitle',
     '#menu .section-title, #menu .section-subtitle',
     '#gallery .section-title, #gallery .section-subtitle',
-    '#testimonials .section-title, #testimonials .section-subtitle',
+    '#testimonials .trust-card',
     '.booking-content h2, .booking-content > p'
   ];
   groups.forEach((sel) => {
