@@ -191,6 +191,38 @@ const burstConfetti = (function confettiSetup() {
   }, { passive: true });
 })();
 
+// ============ HERO ARRIVAL SEQUENCE (scroll-driven crossfade) ============
+(function heroSequence() {
+  const section = document.querySelector('.hero-scroll');
+  if (!section) return;
+  const frames = Array.from(document.querySelectorAll('.hero-frame'));
+  if (frames.length < 2) return;
+  let activeZone = 0;
+  let ticking = false;
+
+  function update() {
+    const rect = section.getBoundingClientRect();
+    const scrollable = section.offsetHeight - window.innerHeight;
+    const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+    const zone = Math.min(frames.length - 1, Math.floor(progress * frames.length));
+
+    if (zone !== activeZone) {
+      activeZone = zone;
+      frames.forEach((frame) => {
+        frame.classList.toggle('active', parseInt(frame.dataset.zone, 10) === zone);
+      });
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+
 // ============ TRAILER SCROLL STORY (annotation cards + snap-stop) ============
 (function scrollStory() {
   const section = document.querySelector('.scroll-story');

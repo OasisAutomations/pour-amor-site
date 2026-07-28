@@ -69,44 +69,50 @@
 
 <main>
 
-  <!-- ============ HERO ============ -->
-  <section id="hero">
-    <div class="hero-bg">
-      <!-- AI-generated concept photography (Higgsfield/nano_banana_pro) standing in for a
-           real photo of Amanda's actual trailer — swap for real photography before this
-           goes live as the client's real site. -->
-      <img class="hero-photo" src="assets/img/hero.webp" alt="A renovated vintage horse trailer bar serving craft cocktails at an outdoor evening wedding reception" width="1800" height="1013">
-      <div class="hero-scrim"></div>
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="grid-overlay"></div>
-      <!-- Decorative liquid-gold blob — CSS/SVG "gooey" effect standing in for a real
-           Spline 3D scene. Swap for a <spline-viewer> once a real scene URL exists
-           (see SKILL (1).md / VANILLA_INTEGRATION.md in the project root for how). -->
-      <div class="liquid-wrap" id="liquidWrap" aria-hidden="true">
-        <div class="blob b1"></div>
-        <div class="blob b2"></div>
-        <div class="blob b3"></div>
+  <!-- ============ HERO (scroll-driven arrival sequence) ============ -->
+  <!-- The experience: arriving at the event and walking up to the bar. Three frames
+       crossfade as the visitor scrolls — distant approach, closer through the crowd,
+       arriving at the counter — while the headline/CTA stay put throughout.
+       AI-generated concept photography (Higgsfield) — swap for real event photography
+       once Amanda has some; same technique as the trailer scroll-story below. -->
+  <section class="hero-scroll" id="hero">
+    <div class="hero-sticky">
+      <div class="hero-bg">
+        <img class="hero-frame active" data-zone="0" src="assets/img/hero-1-distant.webp" alt="A guest's point of view walking a path toward a glowing mobile bar trailer as an evening event begins in the distance" width="1800" height="1013">
+        <img class="hero-frame" data-zone="1" src="assets/img/hero-2-closer.webp" alt="Approaching the warmly lit horse trailer bar through a crowd of guests at an evening event" width="1800" height="1013">
+        <img class="hero-frame" data-zone="2" src="assets/img/hero-3-atbar.webp" alt="Arriving at the bar counter with garnishes and taps ready as a bartender pours a drink" width="1800" height="1013">
+        <div class="hero-scrim"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="grid-overlay"></div>
+        <!-- Decorative liquid-gold blob — CSS/SVG "gooey" effect standing in for a real
+             Spline 3D scene. Swap for a <spline-viewer> once a real scene URL exists
+             (see SKILL (1).md / VANILLA_INTEGRATION.md in the project root for how). -->
+        <div class="liquid-wrap" id="liquidWrap" aria-hidden="true">
+          <div class="blob b1"></div>
+          <div class="blob b2"></div>
+          <div class="blob b3"></div>
+        </div>
+        <svg width="0" height="0" style="position:absolute">
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo" />
+          </filter>
+        </svg>
       </div>
-      <svg width="0" height="0" style="position:absolute">
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo" />
-        </filter>
-      </svg>
-    </div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Riverside County &amp; the Inland Empire</p>
-      <h1 class="hero-title">Every Sip,<br><em>Crafted With Love.</em></h1>
-      <p class="hero-subtitle">A luxury mobile cocktail bar, poured from a one-of-a-kind renovated horse trailer — brought straight to your wedding, party, or celebration.</p>
-      <div class="hero-buttons">
-        <a href="#booking" class="btn-primary">Check Availability</a>
-        <a href="#menu" class="btn-secondary">See The Menu</a>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Riverside County &amp; the Inland Empire</p>
+        <h1 class="hero-title">Every Sip,<br><em>Crafted With Love.</em></h1>
+        <p class="hero-subtitle">A luxury mobile cocktail bar, poured from a one-of-a-kind renovated horse trailer — brought straight to your wedding, party, or celebration.</p>
+        <div class="hero-buttons">
+          <a href="#booking" class="btn-primary">Check Availability</a>
+          <a href="#menu" class="btn-secondary">See The Menu</a>
+        </div>
       </div>
-    </div>
-    <div class="scroll-hint">
-      <span>Scroll to explore</span>
-      <div class="scroll-arrow"></div>
+      <div class="scroll-hint">
+        <span>Scroll to explore</span>
+        <div class="scroll-arrow"></div>
+      </div>
     </div>
   </section>
 
