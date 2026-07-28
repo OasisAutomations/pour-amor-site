@@ -34,6 +34,7 @@
 <body>
 
 <canvas id="embers"></canvas>
+<canvas id="confetti"></canvas>
 
 <div id="loader">
   <div class="loader-content">
@@ -208,6 +209,15 @@
     <p class="specs-footnote">Bilingual bartenders (Spanish / English) available on request.</p>
   </section>
 
+  <!-- ============ CARD SCANNER (3D particle showcase) ============ -->
+  <section id="card-scanner">
+    <div class="scanner-content">
+      <h2 class="section-title">28 Cocktails. One Glass.</h2>
+      <p class="section-subtitle">Every particle in this glass is a drink on the menu — scroll it into view.</p>
+      <canvas id="scannerCanvas"></canvas>
+    </div>
+  </section>
+
   <!-- ============ GALLERY ============ -->
   <section id="gallery">
     <h2 class="section-title">The Bar In Action</h2>
@@ -289,6 +299,10 @@
         <button type="submit" class="btn-primary btn-large">Check Availability</button>
       </form>
 
+      <div class="booking-success" id="bookingSuccess" hidden>
+        <p>&#127881; Thanks — that's in! We'll follow up shortly to check availability and start building your custom cocktail menu.</p>
+      </div>
+
       <div class="booking-alt">
         <a href="tel:+19512188924">(951) 218-8924</a>
         <span>&middot;</span>
@@ -313,6 +327,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
